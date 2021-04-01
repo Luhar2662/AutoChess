@@ -1,0 +1,2 @@
+Coding notes:
+-Checking for checks - checkThreat(Square target): store kings loc, and then use a method on board that checks "canMove()" for each opposing piece. use checkThreat in Kings "canMove()" method to check for revealed/induced check
