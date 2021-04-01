@@ -20,6 +20,18 @@ public class Pawn extends Piece{
         ePvalid = valid;
     }
 
+    public boolean canTake(Board board, Square start, Square end){
+        int x1 = start.getPos()[0];
+        int y1 = start.getPos()[1];
+        int x2 = end.getPos()[0];
+        int y2 = end.getPos()[1];
+        if( (Math.abs(x2-x1)) == 1 && (this.isWhite() == true && (y2-y1)==1 || this.isWhite() == false && (y2-y1)==-1) && board.getSquare(x2,y2).getPiece() != null){
+            return true;
+        }
+
+        return false;
+    }
+
     @Override
     public boolean canMove(Board board, Square start, Square end){
         //check movement, check check taking, check en passant!!!

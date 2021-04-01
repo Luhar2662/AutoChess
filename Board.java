@@ -104,6 +104,30 @@ public class Board{
         return false;
     }
 
+
+    public boolean inThreat(Square target, boolean white){
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++){
+                Square current = this.getSquare(i,j);
+                if(current.getPiece() != null){
+                    if(current.getPiece().isWhite() != white){
+                        if(!(current.getPiece() instanceof Pawn)){
+                            if(current.getPiece().canMove(this, current, target)){
+                                return true;
+                            }
+                        }
+                        else{
+                            if(((Pawn)(current.getPiece())).canTake(this, current, target)){
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     public void resetBoard(){
         // initialize black pieces
         squares[0][0] = new Square(0, 0, new Rook(false));
