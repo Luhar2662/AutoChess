@@ -39,20 +39,24 @@ public class King extends Piece{
         int y = Math.abs(start.getPos()[2] - end.getPos()[2]);
 
         //check castling queenside
-        if(canCastle && end.getPos()[0] == 2 && start.getPos()[0] == 4){
+        if(canCastle && end.getPos()[0] == 2 && start.getPos()[0] == 4 && board.inThreat(start,this.isWhite())==false){
             int currentY = start.getPos()[1];
             if(board.getSquare(0,currentY).getPiece() instanceof Rook && board.getSquare(1,currentY).getPiece() == null && board.getSquare(2,currentY).getPiece() == null && board.getSquare(3,currentY).getPiece() == null){
-                return true;
+                if(board.inThreat(board.getSquare(0,currentY), this.isWhite())==false && board.inThreat(board.getSquare(1,currentY), this.isWhite())==false && board.inThreat(board.getSquare(2,currentY),this.isWhite())==false && board.inThreat(board.getSquare(3,currentY),this.isWhite())==false){
+                    return true;
+                }
             }
             return false;
 
         }
 
         //check kingside
-        if(canCastle && end.getPos()[0] == 6 && start.getPos()[0] == 4){
+        if(canCastle && end.getPos()[0] == 6 && start.getPos()[0] == 4 && board.inThreat(start,this.isWhite())==false){
             int currentY = start.getPos()[1];
             if(board.getSquare(7,currentY).getPiece() instanceof Rook && board.getSquare(6,currentY).getPiece() == null && board.getSquare(5,currentY).getPiece() == null ){
-                return true;
+                if(board.inThreat(board.getSquare(7,currentY),this.isWhite())==false && board.inThreat(board.getSquare(6,currentY),this.isWhite())==false && board.inThreat(board.getSquare(5,currentY),this.isWhite())==false){
+                    return true;
+                }
             }
             return false;
 

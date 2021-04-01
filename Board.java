@@ -142,6 +142,31 @@ public class Board{
         return false;
     }
 
+    
+
+    public boolean updateBoard(Move move){
+        Square start = move.start();
+        Square end = move.end();
+        int x1 = start.getPos()[0];
+        int x2 = end.getPos()[0];
+        int y1 = start.getPos()[1];
+        int y2 = end.getPos()[1];
+
+        if(move.taken() != null){
+
+            squares[x2][y2].getPiece().setTaken(true);
+            squares[x2][y2].setPiece(null);
+        }
+
+        squares[x2][y2].setPiece(squares[x1][y1].getPiece());
+        squares[x1][y1].setPiece(null);
+
+
+
+        return true;
+    }
+
+
     public void resetBoard(){
         // initialize black pieces
         squares[0][0] = new Square(0, 0, new Rook(false));
