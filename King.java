@@ -61,6 +61,10 @@ public class King extends Piece{
         if (x < 2 && y < 2) {
             // check if this move will not result in the king
             // being attacked if so return true
+            if(board.inThreat(end, this.isWhite())){
+                return false;
+            }
+
             return true;
         }
 
