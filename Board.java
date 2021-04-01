@@ -13,6 +13,97 @@ public class Board{
         return squares[x][y];
     }
 
+    //type 1: vertical, type 2: horizontal, type 3: diag
+    public boolean checkRange(int x1, int y1, int x2, int y2, int type){
+        if(type == 1){
+            if(y1 > y2){
+                for(int i = y2 + 1; i < y1; i++){
+                    if(squares[x1][i].getPiece() != null){
+                        return false;
+                    }
+                }
+            }
+
+            if(y2 > y1){
+                for(int i = y1 + 1; i < y2; i++){
+                    if(squares[x1][i].getPiece() != null){
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+        //horizontal
+        if(type == 2){
+            if(x1 > x2){
+                for(int i = x2 + 1; i < x2; i++){
+                    if(squares[i][y1].getPiece() != null){
+                        return false;
+                    }
+                }
+            }
+
+            if(x2 > x1){
+                for(int i = x1 + 1; i < x2; i++){
+                    if(squares[i][y1].getPiece() != null){
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        //check diagonal - casework
+        if(type == 3){
+            int diff = Math.abs(x1 - x2);
+            // Up + Right
+            if(x2>x1 && y2>y1){
+                for(int i = 1; i < diff; i++){
+                    if(squares[x1+i][y1+i].getPiece() != null){
+                        return false;
+                    }
+                }
+                
+            }
+
+            // Up + Left
+            if(x2<x1 && y2>y1){
+                for(int i = 1; i < diff; i++){
+                    if(squares[x1-i][y1+i].getPiece() != null){
+                        return false;
+                    }
+                }
+                
+            }
+
+            // Down + Left
+            if(x2<x1 && y2<y1){
+                for(int i = 1; i < diff; i++){
+                    if(squares[x1-i][y1-i].getPiece() != null){
+                        return false;
+                    }
+                }
+                
+            }
+
+            // Down + Right
+            if(x2>x1 && y2<y1){
+                for(int i = 1; i < diff; i++){
+                    if(squares[x1+i][y1-i].getPiece() != null){
+                        return false;
+                    }
+                }
+                
+            }
+            return true;
+        }
+        
+
+        return false;
+    }
+
     public void resetBoard(){
         // initialize black pieces
         squares[0][0] = new Square(0, 0, new Rook(false));
