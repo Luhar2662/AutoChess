@@ -128,6 +128,20 @@ public class Board{
         return false;
     }
 
+    public boolean check(boolean white){
+        for(int i = 0;i<8; i++){
+            for(int j = 0; j<8; j++){
+                Square current = this.getSquare(i,j);
+                if(current.getPiece() instanceof King){
+                    if(current.getPiece().isWhite() == white){
+                        return this.inThreat(current, white);
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     public void resetBoard(){
         // initialize black pieces
         squares[0][0] = new Square(0, 0, new Rook(false));

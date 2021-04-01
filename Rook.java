@@ -1,4 +1,5 @@
 public class Rook extends Piece{
+    private boolean canCastle = true;
     public Rook(boolean white){
         super(white);
     }
@@ -24,5 +25,9 @@ public class Rook extends Piece{
         }
 
         return false;
+    }
+
+    public void setCastle(boolean in){
+        canCastle = in;
     }
 }
