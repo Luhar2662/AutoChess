@@ -158,8 +158,22 @@ public class Board{
             squares[x2][y2].setPiece(null);
         }
 
-        squares[x2][y2].setPiece(squares[x1][y1].getPiece());
-        squares[x1][y1].setPiece(null);
+        if(!move.castling() && !move.eP() && ! move.jumping()){
+            squares[x2][y2].setPiece(squares[x1][y1].getPiece());
+            squares[x1][y1].setPiece(null);
+
+            if(move.moving() instanceof Pawn){
+                ((Pawn)(move.moving())).setMoved(true);
+                if(((Pawn)(move.moving())).ePvalid()){
+                    ((Pawn)(move.moving())).setEP(false);
+                }
+            }
+
+            if(move.moving() instanceof King){
+                ((King)(move.moving())).setCastling(false);
+            }
+        }
+        
 
 
 
