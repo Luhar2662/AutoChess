@@ -12,6 +12,12 @@ public class Game {
         board = new Board();
         this.p1 = p1;
         this.p2 = p2;
+        if(p1.playingWhite()){
+            active = p1;
+        }
+        else{
+            active = p2;
+        }
     }
 
     public Move createMove(int x1, int x2, int y1, int y2, Player player){
@@ -85,6 +91,18 @@ public class Game {
         return isValid;
 
 
+    }
+
+    public void runMove(Move move){
+        board.updateBoard(move);
+        if(active == p1){
+            active = p2;
+        }
+        else{
+            active = p1;
+        }
+        moves.add(move);
+        moveNum++;
     }
 
 }
