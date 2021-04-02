@@ -158,7 +158,8 @@ public class Board{
             squares[x2][y2].setPiece(null);
         }
 
-        if(!move.castling() && !move.eP() && ! move.jumping()){
+        //no special circumstance
+        if(!move.castling() && !move.eP() && !move.jumping()){
             squares[x2][y2].setPiece(squares[x1][y1].getPiece());
             squares[x1][y1].setPiece(null);
 
@@ -173,7 +174,36 @@ public class Board{
                 ((King)(move.moving())).setCastling(false);
             }
         }
-        
+
+        //jumpmove
+        if(!move.castling() && !move.eP() && move.jumping()){
+            squares[x2][y2].setPiece(squares[x1][y1].getPiece());
+            squares[x1][y1].setPiece(null);
+
+            ((Pawn)(move.moving())).setEP(true);
+            ((Pawn)(move.moving())).setMoved(true);
+
+        }
+
+        //castling
+        if(move.castling() && !move.eP() && !move.jumping()){
+            squares[x2][y2].setPiece(squares[x1][y1].getPiece());
+            squares[x1][y1].setPiece(null);
+
+            //queenside
+            if(x2<x1){
+                squares[3][y2].setPiece(squares[0][y1].getPiece());
+                squares[0][y1].setPiece(null);
+            }
+            //kingside
+            if(x1<x2){
+                squares[5][y2].setPiece(squares[7][y1].getPiece());
+                squares[7][y1].setPiece(null);
+            }
+
+            ((King)(move.moving())).setCastling(false);
+
+        }
 
 
 
