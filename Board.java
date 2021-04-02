@@ -10,7 +10,7 @@ public class Board{
         squares = new Square[8][8];
         for(int i = 0; i<8;i++){
             for(int j = 0; j<8; j++){
-                System.out.println(" " + i + " " + j);
+                
                 Piece piece = cBoard.getSquare(i,j).getPiece();
 
                 boolean white = false;
@@ -296,6 +296,10 @@ public class Board{
             }
         }
 
+        Square kingSq = this.getKingPos(move.player().playingWhite());
+        if(this.inThreat(kingSq, move.player().playingWhite())){
+            System.out.println("Check!");
+        }
 
 
         return true;

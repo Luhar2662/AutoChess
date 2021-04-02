@@ -18,6 +18,7 @@ public class gameExec {
 
         //start game
         boolean running = true;
+        game.printBoard();
         while(running = true){
             //take input - run until validated
             System.out.println(game.active().getName() + "'s turn:");

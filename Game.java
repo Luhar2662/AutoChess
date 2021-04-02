@@ -116,6 +116,8 @@ public class Game {
         else{
             active = p1;
         }
+
+        
         //moves.add(move);
         moveNum++;
     }
