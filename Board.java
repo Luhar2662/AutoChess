@@ -248,6 +248,20 @@ public class Board{
                 }
             }
 
+            for(int i = 0; i<8;i++){
+                for(int j = 0; j<8; j++){
+                    Square current = squares[i][j];
+                    if(current.getPiece()!=null){
+                        if(current.getPiece() instanceof Pawn){
+                            if(((Pawn)(current.getPiece())).ePvalid()){
+                                ((Pawn)(current.getPiece())).setEP(false);
+                            }
+
+                        }
+                    }
+                }
+            }
+
             if(move.moving() instanceof King){
                 ((King)(move.moving())).setCastling(false);
             }

@@ -10,3 +10,9 @@ Coding notes:
 -WORKING ON UPDATE METHOD SO checks can be evaluated on a copied board. updating jumps, en passant, and castling needs attention
 
 - Checkmate: check king movement, check blocking, check taking check piece
+
+
+TODO:
+-checkmate
+-promotion
+-player logic!!!

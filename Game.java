@@ -119,7 +119,11 @@ public class Game {
 
     public void printBoard(){
         System.out.println("current board:");
+        System.out.println("  a b c d e f g h");
+        System.out.println("  ________________");
+        
         for(int i=0; i<8; i++){
+            System.out.print("" + (8-i) + "|");
             for(int j=0;j<8;j++){
                 Square current = board.getSquare(j,i);
                 if(current.getPiece() == null){
@@ -127,11 +131,17 @@ public class Game {
                 }
                 else{
                     System.out.print(current.getPiece().token());
-                    System.out.print(" ");
+                    if(current.getPiece().isWhite()){
+                        System.out.print(" ");
+                    }
+                    else{
+                        System.out.print(".");
+                    }
                 }
             }
-            System.out.println("");
+            System.out.println("|");
         }
+        System.out.println("  _________________");
     }
 
 }
