@@ -13,12 +13,7 @@ public class Game {
         board.resetBoard();
         this.p1 = p1;
         this.p2 = p2;
-        if(p1.playingWhite()){
-            active = p1;
-        }
-        else{
-            active = p2;
-        }
+        active = this.p1;
     }
 
     public Player active(){
@@ -117,7 +112,7 @@ public class Game {
             active = p1;
         }
 
-        
+
         //moves.add(move);
         moveNum++;
     }

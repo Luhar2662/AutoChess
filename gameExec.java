@@ -27,17 +27,31 @@ public class gameExec {
             Move activeMove = new Move(new Player(true, "filler"), new Square(0,0,null), new Square(0,0,null), null, null, false, false, false, 0);
             while(!valid){
                 //input
-                System.out.println("input move: x1, y1, x2, y2");
-                int x1 = input.nextInt();
-                int y1 = input.nextInt();
-                int x2 = input.nextInt();
-                int y2 = input.nextInt();
+                System.out.println("input move: start square, end square");
+                String sq1 = input.nextLine();
+                String sq2 = input.nextLine();
+                if(sq1.length() != 2 || sq2.length() != 2 ){
+                    System.out.println("invalid input");
+                }
+
+                //ASCII conversion
+                char[] ch1 = sq1.toCharArray();
+                int x1 = (ch1[0] - 97);
+                int y1 = 8-((ch1[1] - 48));
+
+                char[] ch2 = sq2.toCharArray();
+                int x2 = (ch2[0] - 97);
+                int y2 = 8-((ch2[1] - 48));
+
+                System.out.println("(" + x1 + "" + y1 + "),(" + x2 + "" + y2 +")");
+
 
                 activeMove = game.createMove(x1, x2, y1, y2, active);
                 //check move
 
+                if(activeMove != null){
                 valid = game.isValid(activeMove);
-
+            }
                 //if not valid, re prompt
                 if(!valid){
                     System.out.println("invalid move try again");
