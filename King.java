@@ -35,8 +35,8 @@ public class King extends Piece{
 
         
   
-        int x = Math.abs(start.getPos()[1] - end.getPos()[1]);
-        int y = Math.abs(start.getPos()[2] - end.getPos()[2]);
+        int x = Math.abs(start.getPos()[0] - end.getPos()[0]);
+        int y = Math.abs(start.getPos()[1] - end.getPos()[1]);
 
         //check castling queenside
         if(canCastle && end.getPos()[0] == 2 && start.getPos()[0] == 4 && board.inThreat(start,this.isWhite())==false){

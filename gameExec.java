@@ -25,7 +25,7 @@ public class gameExec {
             Move activeMove;
             while(!valid){
                 //input
-                System.out.println("input move: x1, x2, y1, y2");
+                System.out.println("input move: x1, y1, x2, y2");
                 int x1 = input.nextInt();
                 int y1 = input.nextInt();
                 int x2 = input.nextInt();
