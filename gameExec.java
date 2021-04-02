@@ -45,6 +45,7 @@ public class gameExec {
 
             //once valid, execute move, switch active player, restart loop
             game.runMove(activeMove);
+            game.printBoard();
 
         }
 

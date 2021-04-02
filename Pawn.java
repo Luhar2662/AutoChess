@@ -1,6 +1,11 @@
 public class Pawn extends Piece{
     private boolean hasMoved = false;
     private boolean ePvalid = false;
+    
+    @Override
+    public String token(){
+        return "P";
+    }
      
 
     public Pawn(boolean white){

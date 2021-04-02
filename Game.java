@@ -120,4 +120,21 @@ public class Game {
         moveNum++;
     }
 
+    public void printBoard(){
+        System.out.println("current board:");
+        for(int i=0; i<8; i++){
+            for(int j=0;j<8;j++){
+                Square current = board.getSquare(j,i);
+                if(current.getPiece() == null){
+                    System.out.print("~ ");
+                }
+                else{
+                    System.out.print(current.getPiece().token());
+                    System.out.print(" ");
+                }
+            }
+            System.out.println("");
+        }
+    }
+
 }

@@ -5,6 +5,10 @@ public class Bishop extends Piece{
     }
 
     @Override
+    public String token(){
+        return "B";
+    }
+    @Override
     public boolean canMove(Board board, Square start, Square end){
         
         if(end.getPiece()!=null){

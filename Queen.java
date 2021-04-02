@@ -4,6 +4,11 @@ public class Queen extends Piece{
     }
 
     @Override
+    public String token(){
+        return "Q";
+    }
+
+    @Override
     public boolean canMove(Board board, Square start, Square end){
         
         if(end.getPiece()!=null){

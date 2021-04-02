@@ -4,6 +4,11 @@ public class Knight extends Piece{
     }
 
     @Override
+    public String token(){
+        return "N";
+    }
+
+    @Override
     public boolean canMove(Board board, Square start, Square end){
         
         if(end.getPiece()!=null){

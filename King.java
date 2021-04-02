@@ -23,6 +23,10 @@ public class King extends Piece{
         return false;
     }
 
+    @Override
+    public String token(){
+        return "K";
+    }
 
 
     @Override

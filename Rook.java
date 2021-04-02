@@ -5,6 +5,11 @@ public class Rook extends Piece{
     }
 
     @Override
+    public String token(){
+        return "R";
+    }
+
+    @Override
     public boolean canMove(Board board, Square start, Square end){
         if(end.getPiece()!=null){
         if(end.getPiece().isWhite() == this.isWhite()){
