@@ -22,7 +22,7 @@ public class gameExec {
             //take input - run until validated
             boolean valid = false;
             Player active = game.active();
-            Move activeMove;
+            Move activeMove = new Move(new Player(true, "filler"), new Square(0,0,null), new Square(0,0,null), null, null, false, false, false, 0);
             while(!valid){
                 //input
                 System.out.println("input move: x1, y1, x2, y2");
@@ -38,11 +38,12 @@ public class gameExec {
 
                 //if not valid, re prompt
                 if(!valid){
-                    System.out.println("invalid move try againa");
+                    System.out.println("invalid move try again");
                 }
             }
 
             //once valid, execute move, switch active player, restart loop
+            game.runMove(activeMove);
 
         }
 

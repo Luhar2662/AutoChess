@@ -69,7 +69,15 @@ public class Game {
             }
         }
         
-
+        if(jumping){
+            System.out.println("jumping");
+        }
+        if(castling){
+            System.out.println("castling");
+        }
+        if(eP){
+            System.out.println("eP");
+        }
 
         
         Move move = new Move(player,  start,  end,  moving,  taken,  castling,  jumping, eP,  num);
@@ -77,10 +85,12 @@ public class Game {
     }
 
     public boolean isValid(Move move){
+        System.out.println("checking valid");
         boolean isValid = false;
-        if(active == move.player()){
+        if(active.playingWhite() == move.player().playingWhite()){
             if(move.moving().canMove(board, move.start(),move.end())){
                 isValid = true;
+                System.out.println("can move");
             }
         }
 
@@ -106,7 +116,7 @@ public class Game {
         else{
             active = p1;
         }
-        moves.add(move);
+        //moves.add(move);
         moveNum++;
     }
 
