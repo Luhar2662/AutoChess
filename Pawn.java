@@ -16,6 +16,10 @@ public class Pawn extends Piece{
         hasMoved = moved;
     }
 
+    public boolean hasMoved(){
+        return hasMoved;
+    }
+
     public void setEP(boolean valid){
         ePvalid = valid;
     }

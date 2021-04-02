@@ -1,5 +1,5 @@
 public class King extends Piece{
-    private boolean canCastle;
+    private boolean canCastle = true;
     private boolean inCheck;
     
     public King(boolean white){

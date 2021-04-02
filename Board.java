@@ -5,6 +5,68 @@ public class Board{
         this.resetBoard();
     }
 
+    public Board(Board cBoard){
+        for(int i = 0; i<8;i++){
+            for(int j = 0; j<8; j++){
+                Piece piece = cBoard.getSquare(i,j).getPiece();
+
+                boolean white = false;
+                //check null
+                if(piece != null){
+                    white = piece.isWhite();
+                }
+                else{
+                    squares[i][j] = new Square(i,j,null);
+                    
+                }
+
+                //check instances for piece typing
+                if(piece instanceof King){
+                    boolean castle = ((King)piece).canCastle();
+                    King copyKing = new King(white);
+                    copyKing.setCastling(castle);
+                    squares[i][j] = new Square(i, j, copyKing);
+
+                }
+
+                if(piece instanceof Bishop){
+                    Bishop copyBish = new Bishop(white);
+                    squares[i][j] = new Square(i, j, copyBish);
+
+                }
+
+                if(piece instanceof Knight){
+                    Knight copyKn = new Knight(white);
+                    squares[i][j] = new Square(i, j, copyKn);
+
+                }
+
+                if(piece instanceof Rook){
+                    Rook copyRook = new Rook(white);
+                    squares[i][j] = new Square(i, j, copyRook);
+
+                }
+
+                if(piece instanceof Queen){
+                    Queen copyQueen = new Queen(white);
+                    squares[i][j] = new Square(i, j, copyQueen);
+
+                }
+
+                if(piece instanceof Pawn){
+                    boolean hasMoved = ((Pawn)piece).hasMoved();
+                    boolean eP = ((Pawn)piece).ePvalid();
+                    Pawn copyPawn = new Pawn(white);
+                    copyPawn.setMoved(hasMoved);
+                    copyPawn.setEP(eP);
+                    squares[i][j] = new Square(i, j, copyPawn);
+
+                }
+
+            }
+        }
+    }
+
     public Square getSquare(int x, int y){
         if (x < 0 || x > 7 || y < 0 || y > 7) {
            return null;
