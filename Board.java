@@ -289,10 +289,10 @@ public class Board{
             squares[x1][y1].setPiece(null);
 
             if(move.moving().isWhite()){
-                squares[x2][y2-1].setPiece(null);
+                squares[x2][y2+1].setPiece(null);
             }
             else{
-                squares[x2][y2+1].setPiece(null);
+                squares[x2][y2-1].setPiece(null);
             }
         }
 

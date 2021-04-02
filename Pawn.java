@@ -71,16 +71,16 @@ public class Pawn extends Piece{
         }
         
         //somehow check eP?
-        if( (Math.abs(x2-x1)) == 1 && (this.isWhite() == true && (y2-y1)==1 || this.isWhite() == false && (y2-y1)==-1) && board.getSquare(x2,y2).getPiece() == null){
+        if( (Math.abs(x2-x1)) == 1 && ((this.isWhite() == true && (y2-y1)==-1) || (this.isWhite() == false && (y2-y1)==1)) && board.getSquare(x2,y2).getPiece() == null){
             if(this.isWhite()){
-                if(board.getSquare(x2,y2-1).getPiece() instanceof Pawn){
+                if(board.getSquare(x2,y2+1).getPiece() instanceof Pawn){
                     if(((Pawn)(board.getSquare(x2,y2+1).getPiece())).ePvalid() && board.getSquare(x2,y2+1).getPiece().isWhite() != this.isWhite()){
                         return true;
                     }
                 }
             }
             else{
-                if(board.getSquare(x2,y2+1).getPiece() instanceof Pawn){
+                if(board.getSquare(x2,y2-1).getPiece() instanceof Pawn){
                     if(((Pawn)(board.getSquare(x2,y2-1).getPiece())).ePvalid() && board.getSquare(x2,y2-1).getPiece().isWhite() != this.isWhite()){
                         return true;
                     }
