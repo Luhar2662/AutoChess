@@ -20,6 +20,7 @@ public class gameExec {
         boolean running = true;
         while(running = true){
             //take input - run until validated
+            System.out.println(game.active().getName() + "'s turn:");
             boolean valid = false;
             Player active = game.active();
             Move activeMove = new Move(new Player(true, "filler"), new Square(0,0,null), new Square(0,0,null), null, null, false, false, false, 0);
