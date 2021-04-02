@@ -10,6 +10,7 @@ public class Game {
 
     public Game(Player p1, Player p2){
         board = new Board();
+        board.resetBoard();
         this.p1 = p1;
         this.p2 = p2;
         if(p1.playingWhite()){
@@ -18,6 +19,10 @@ public class Game {
         else{
             active = p2;
         }
+    }
+
+    public Player active(){
+        return active;
     }
 
     public Move createMove(int x1, int x2, int y1, int y2, Player player){
