@@ -190,6 +190,19 @@ public class Board{
         return false;
     }
 
+    public Square getKingPos(boolean color){
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++){
+                Square current = this.getSquare(i,j);
+                if(current.getPiece() instanceof King && current.getPiece().isWhite()==color){
+                    return current;
+                }
+            }
+        }
+        return null;
+
+    }
+
     public boolean check(boolean white){
         for(int i = 0;i<8; i++){
             for(int j = 0; j<8; j++){

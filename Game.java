@@ -73,8 +73,15 @@ public class Game {
             }
         }
 
-        //STILL HAVE TO CHECK FOR KINGCHECK!!!
-        
+        //STILL HAVE TO CHECK FOR KINGCHECK!!! use a copied board. if a check results for that color, not valid
+        Board copied = new Board(board);
+        copied.updateBoard(move);
+        Square target = copied.getKingPos(move.player().playingWhite());
+        if(copied.inThreat(target, target.getPiece().isWhite())){
+            isValid = false;
+        }
+
+
         return isValid;
 
 
