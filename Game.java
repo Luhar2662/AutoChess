@@ -97,8 +97,14 @@ public class Game {
             isValid = false;
         }
 
+        Square kingSq = board.getKingPos(move.player().playingWhite());
+        if(board.inThreat(kingSq, move.player().playingWhite())){
+            System.out.println("Check!");
+        }
 
         return isValid;
+
+        
 
 
     }
