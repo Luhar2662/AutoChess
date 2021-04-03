@@ -32,10 +32,12 @@ public class King extends Piece{
     @Override
     public boolean canMove(Board board, Square start, Square end)
     {
-        
+     
+        if(end.getPiece() != null){
         if (end.getPiece().isWhite() == this.isWhite()) {
             return false;
         }
+    }
 
         
   

@@ -14,5 +14,3 @@ Coding notes:
 
 TODO:
 -checkmate
--promotion
--player logic!!!
