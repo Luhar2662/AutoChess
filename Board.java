@@ -1,3 +1,6 @@
+import java.util.Scanner;
+
+
 public class Board{
     Square[][] squares;
 
@@ -245,6 +248,38 @@ public class Board{
                 ((Pawn)(move.moving())).setMoved(true);
                 if(((Pawn)(move.moving())).ePvalid()){
                     ((Pawn)(move.moving())).setEP(false);
+                }
+
+                //handle promotion
+                if(end.getPos()[1] == 0 || end.getPos()[1]==7){
+                    
+                    boolean valInput = false;
+                    int choice = 1;
+                    while(!valInput){
+                        System.out.println("Promotion: choose new piece. 1:Q, 2:N, 3:B, 4:R");
+                        
+                        if(choice == 1 || choice == 2 || choice == 3 || choice == 4){
+                            valInput = true;
+                        }
+                        else{
+                            System.out.println("invalid input, try again");
+                        }
+                    }
+
+                    if(choice == 1){
+                        squares[x2][y2].setPiece(new Queen(squares[x2][y2].getPiece().isWhite()));
+                    }
+                    if(choice == 2){
+                        squares[x2][y2].setPiece(new Knight(squares[x2][y2].getPiece().isWhite()));
+                    }
+                    if(choice == 3){
+                        squares[x2][y2].setPiece(new Bishop(squares[x2][y2].getPiece().isWhite()));
+                    }
+                    if(choice == 4){
+                        squares[x2][y2].setPiece(new Rook(squares[x2][y2].getPiece().isWhite()));
+                    }
+
+                    
                 }
             }
 

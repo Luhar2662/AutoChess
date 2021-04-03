@@ -82,7 +82,7 @@ public class Game {
     public boolean isValid(Move move){
         System.out.println("checking valid");
         boolean isValid = false;
-        if(active.playingWhite() == move.player().playingWhite()){
+        if((active.playingWhite() == move.player().playingWhite()) &&  (active.playingWhite() == move.moving().isWhite())){
             if(move.moving().canMove(board, move.start(),move.end())){
                 isValid = true;
                 System.out.println("can move");
