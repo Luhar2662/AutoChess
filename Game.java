@@ -5,7 +5,7 @@ public class Game {
     private Player p1;
     private Player p2;
     private Player active;
-    private ArrayList<Move> moves;
+    private ArrayList<Move> moves = new ArrayList<Move>();
     private int moveNum = 0;
 
     public Game(Player p1, Player p2){
@@ -20,7 +20,7 @@ public class Game {
         return active;
     }
 
-    public Move createMove(int x1, int x2, int y1, int y2, Player player){
+    public Move createMove(int x1, int x2, int y1, int y2, Player player, String endName){
         if(x1 < 0 || x1 > 7 || y1 < 0 || y1 > 7 || x2 < 0 || x2 > 7 || y2 < 0 || y2 > 7){
             return null;
         }
@@ -75,7 +75,7 @@ public class Game {
         }
 
         
-        Move move = new Move(player,  start,  end,  moving,  taken,  castling,  jumping, eP,  num);
+        Move move = new Move(player,  start,  end,  moving,  taken,  castling,  jumping, eP,  num, endName);
         return(move);
     }
 
@@ -120,8 +120,9 @@ public class Game {
         }
 
 
-        //moves.add(move);
+        moves.add(move);
         moveNum++;
+        System.out.println(moves.get(moves.size()-1));
     }
 
     public void printBoard(){

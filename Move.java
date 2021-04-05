@@ -8,9 +8,10 @@ public class Move {
     private boolean jumping = false;
     private int moveNum;
     private boolean eP = false;
+    private String endName;
 
 
-    public Move(Player player, Square start, Square end, Piece moving, Piece taken, boolean castling, boolean jumping, boolean eP, int num){
+    public Move(Player player, Square start, Square end, Piece moving, Piece taken, boolean castling, boolean jumping, boolean eP, int num, String endName){
         this.player = player;
         this.start = start;
         this.end = end;
@@ -20,6 +21,7 @@ public class Move {
         this.jumping = jumping;
         this.moveNum = num;
         this.eP = eP;
+        this.endName = endName;
 
     }
 
@@ -57,6 +59,29 @@ public class Move {
         return moveNum;
     }
 
+    public String toString(){
+        String moveString = "";
+        moveString += this.moving().token();
+
+        if(this.taken != null){
+            moveString += "x";
+        }
+
+        moveString += endName;
+
+
+        
+        if(this.castling()){
+            if(this.end().getPos()[1] == 1){
+                moveString = "O-O";
+            }
+            else{
+                moveString = "O-O-O";
+            }
+        }
+        String output = ("" + moveNum + ": " + moveString);
+        return output;
+    }
 
 
    

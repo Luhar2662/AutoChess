@@ -196,6 +196,34 @@ public class Board{
         return false;
     }
 
+    public boolean checkmated(boolean white){
+        boolean isBoxed = false;
+        Square kingpos = this.getKingPos(white);
+        int x1 = kingpos.getPos()[0];
+        int y1 = kingpos.getPos()[1];
+        boolean kingCanMove = false;
+
+        //canKingMove?
+        if(this.inThreat(kingpos,white)){
+            for(int i = -1; i<2; i++){
+                for(int j = -1; j<2; j++){
+                    if(kingpos.getPiece().canMove(this, kingpos, this.getSquare(x1+i,y1+j))){
+                        kingCanMove = true;
+                    }
+                }
+            }
+        }
+
+        if(kingCanMove){
+            isBoxed = false;
+            return isBoxed;
+        }
+
+        //can aggressor be taken?
+
+        return isBoxed;
+    }
+
     public Square getKingPos(boolean color){
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 8; j++){

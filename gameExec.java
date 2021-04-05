@@ -20,11 +20,17 @@ public class gameExec {
         boolean running = true;
         game.printBoard();
         while(running = true){
+            //check checkmate
+            boolean currentColor = game.active().playingWhite();
+            
+
+
+
             //take input - run until validated
             System.out.println(game.active().getName() + "'s turn:");
             boolean valid = false;
             Player active = game.active();
-            Move activeMove = new Move(new Player(true, "filler"), new Square(0,0,null), new Square(0,0,null), null, null, false, false, false, 0);
+            Move activeMove = new Move(new Player(true, "filler"), new Square(0,0,null), new Square(0,0,null), null, null, false, false, false, 0, "none");
             while(!valid){
                 //input
                 System.out.println("input move: start square, end square");
@@ -46,7 +52,7 @@ public class gameExec {
                 System.out.println("(" + x1 + "" + y1 + "),(" + x2 + "" + y2 +")");
 
 
-                activeMove = game.createMove(x1, x2, y1, y2, active);
+                activeMove = game.createMove(x1, x2, y1, y2, active, sq2);
                 //check move
 
                 if(activeMove != null){
