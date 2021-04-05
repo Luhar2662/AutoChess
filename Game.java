@@ -110,6 +110,10 @@ public class Game {
     }
 
 
+    public Board getBoard(){
+        return board;
+    }
+
     public void runMove(Move move){
         board.updateBoard(move);
         if(active == p1){

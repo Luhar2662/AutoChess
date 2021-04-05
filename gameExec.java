@@ -25,6 +25,9 @@ public class gameExec {
             
 
 
+            if(game.getBoard().inThreat(game.getBoard().getKingPos(game.active().playingWhite()), game.active().playingWhite())){
+                System.out.println("Check!");
+            }
 
             //take input - run until validated
             System.out.println(game.active().getName() + "'s turn:");
