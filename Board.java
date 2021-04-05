@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 
 public class Board{
@@ -196,8 +197,10 @@ public class Board{
         return false;
     }
 
+    
+
     public boolean checkmated(boolean white){
-        boolean isBoxed = false;
+        boolean isBoxed = true;
         Square kingpos = this.getKingPos(white);
         int x1 = kingpos.getPos()[0];
         int y1 = kingpos.getPos()[1];
@@ -220,6 +223,57 @@ public class Board{
         }
 
         //can aggressor be taken?
+        //get all aggressor squares. 
+        ArrayList<Square> aggSquares = new ArrayList<Square>();
+    
+        for(int i = 0; i<8; i++){
+            for(int j = 0; j<8; j++){
+                Square current = this.getSquare(i,j);
+                if(current.getPiece().canMove(this, current, kingpos)){
+                    if(current.getPiece().isWhite() == white){
+                        aggSquares.add(current);
+                    }
+                }
+            }
+        }
+
+        for(Square s : aggSquares){
+            if(this.inThreat(s, !(white))){
+                isBoxed = false;
+            }
+        }
+
+        //define move coordinates.
+        
+
+
+
+        //get aggressing piece
+        for(Square s : aggSquares){
+            Piece aPiece = s.getPiece();
+            int x2 = s.getPos()[0];
+            int y2 = s.getPos()[1];
+            ArrayList<Square> path = new ArrayList<Square>();
+            if(!(aPiece instanceof Knight)){
+                //test for diff types of motion
+                //vertical
+                if(x2 == x1){
+
+                }
+                //horizontal
+                else if(y2 == y1){
+
+                }
+
+                //diag
+                else{
+
+                }
+
+
+            }
+            
+        }
 
         return isBoxed;
     }
