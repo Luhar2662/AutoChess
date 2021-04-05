@@ -19,14 +19,26 @@ public class gameExec {
         //start game
         boolean running = true;
         game.printBoard();
-        while(running = true){
+        while(running == true){
             //check checkmate
-            boolean currentColor = game.active().playingWhite();
+            
             
 
 
             if(game.getBoard().inThreat(game.getBoard().getKingPos(game.active().playingWhite()), game.active().playingWhite())){
                 System.out.println("Check!");
+                boolean currentColor = game.active().playingWhite();
+            if(game.getBoard().checkmated(currentColor)){
+                System.out.println("Checkmated!");
+                if(currentColor){
+                    System.out.println("Black Wins!");
+                }
+                else{
+                    System.out.println("White Wins!");
+                }
+
+                running = false;
+            }
             }
 
             //take input - run until validated
@@ -70,6 +82,21 @@ public class gameExec {
             //once valid, execute move, switch active player, restart loop
             game.runMove(activeMove);
             game.printBoard();
+            if(game.getBoard().inThreat(game.getBoard().getKingPos(game.active().playingWhite()), game.active().playingWhite())){
+                System.out.println("Check!");
+                boolean currentColor = game.active().playingWhite();
+            if(game.getBoard().checkmated(currentColor)){
+                System.out.println("Checkmated!");
+                if(currentColor){
+                    System.out.println("Black Wins!");
+                }
+                else{
+                    System.out.println("White Wins!");
+                }
+
+                running = false;
+            }
+            }
 
         }
 

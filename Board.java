@@ -197,6 +197,29 @@ public class Board{
         return false;
     }
 
+    public boolean canBlock(Square target, boolean white){
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++){
+                Square current = this.getSquare(i,j);
+                if(current.getPiece() != null){
+                    if(current.getPiece().isWhite() != white && !(current.getPiece() instanceof King)){
+                        if(!(current.getPiece() instanceof Pawn)){
+                            if(current.getPiece().canMove(this, current, target)){
+                                return true;
+                            }
+                        }
+                        else{
+                            if(((Pawn)(current.getPiece())).canMove(this, current, target)){
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     
 
     public boolean checkmated(boolean white){
@@ -205,14 +228,16 @@ public class Board{
         int x1 = kingpos.getPos()[0];
         int y1 = kingpos.getPos()[1];
         boolean kingCanMove = false;
-
+        System.out.println("checking for checkmate");
         //canKingMove?
         if(this.inThreat(kingpos,white)){
             for(int i = -1; i<2; i++){
                 for(int j = -1; j<2; j++){
+                    if(i>= 0 && i < 8 && j>=0 && j<8){
                     if(kingpos.getPiece().canMove(this, kingpos, this.getSquare(x1+i,y1+j))){
                         kingCanMove = true;
                     }
+                }
                 }
             }
         }
@@ -220,6 +245,9 @@ public class Board{
         if(kingCanMove){
             isBoxed = false;
             return isBoxed;
+        }
+        else{
+            System.out.println("King cant move");
         }
 
         //can aggressor be taken?
@@ -229,12 +257,14 @@ public class Board{
         for(int i = 0; i<8; i++){
             for(int j = 0; j<8; j++){
                 Square current = this.getSquare(i,j);
+                if(current.getPiece() != null){
                 if(current.getPiece().canMove(this, current, kingpos)){
                     if(current.getPiece().isWhite() == white){
                         aggSquares.add(current);
                     }
                 }
             }
+        }
         }
 
         for(Square s : aggSquares){
@@ -253,30 +283,81 @@ public class Board{
             Piece aPiece = s.getPiece();
             int x2 = s.getPos()[0];
             int y2 = s.getPos()[1];
-            ArrayList<Square> path = new ArrayList<Square>();
+            
             if(!(aPiece instanceof Knight)){
                 //test for diff types of motion
                 //vertical
                 if(x2 == x1){
-
+                    for(int i = y1+1; i<y2; i ++){
+                        if(this.canBlock(this.getSquare(x1,i), ! white)){
+                            isBoxed = false;
+                        }
+                    }
                 }
                 //horizontal
                 else if(y2 == y1){
+                    for(int i = x1+1; i<x2; i ++){
+                        if(this.canBlock(this.getSquare(x1,i), ! white)){
+                            isBoxed = false;
+                        }
+                    }
 
                 }
 
                 //diag
                 else{
+                    int diff = Math.abs(x1 - x2);
+            // Up + Right
+            if(x2>x1 && y2>y1){
+                for(int i = 1; i < diff; i++){
+                    if(this.canBlock(this.getSquare(x1+i,y1+i), ! white)){
+                            isBoxed = false;
+                        }
+                }
+                
+            }
+
+            // Up + Left
+            if(x2<x1 && y2>y1){
+                for(int i = 1; i < diff; i++){
+                    if(this.canBlock(this.getSquare(x1-i,y1+i), ! white)){
+                        isBoxed = false;
+                    }
+                }
+                
+            }
+
+            // Down + Left
+            if(x2<x1 && y2<y1){
+                for(int i = 1; i < diff; i++){
+                    if(this.canBlock(this.getSquare(x1-i,y1-i), ! white)){
+                        isBoxed = false;
+                    }
+                }
+                
+            }
+
+            // Down + Right
+            if(x2>x1 && y2<y1){
+                for(int i = 1; i < diff; i++){
+                    if(this.canBlock(this.getSquare(x1+i,y1-i), ! white)){
+                        isBoxed = false;
+                    }
+                }
+                
+            }
+
+                    }
 
                 }
 
 
             }
-            
+            return isBoxed;
         }
 
-        return isBoxed;
-    }
+        
+    
 
     public Square getKingPos(boolean color){
         for(int i = 0; i < 8; i++){
