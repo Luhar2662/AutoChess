@@ -61,8 +61,9 @@ public class Move {
 
     public String toString(){
         String moveString = "";
+        if(!(this.moving() instanceof Pawn)){
         moveString += this.moving().token();
-
+        }
         if(this.taken != null){
             moveString += "x";
         }
