@@ -239,6 +239,15 @@ public class Board{
                         System.out.println("King can move" + (x1+i)+ " " + (y1+j));
                         kingCanMove = true;
                     }
+                    else if(kingpos.getPiece().canMove(this, kingpos, this.getSquare(x1+i,y1+j))){
+                        Piece holder = this.getSquare(x1+i,y1+j).getPiece();
+                        this.getSquare(x1+i,y1+j).setPiece(null);
+                        if(!(this.inThreat(this.getSquare(x1+i,y1+j),white))){
+                            System.out.println("King can move" + (x1+i)+ " " + (y1+j));
+                            kingCanMove = true;
+                        }
+                        this.getSquare(x1+i,y1+j).setPiece(holder);
+                    }
                 }
                 }
             }
