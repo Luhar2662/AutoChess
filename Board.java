@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Board{
     Square[][] squares;
+    
 
     public Board(){
         squares = new Square[8][8];

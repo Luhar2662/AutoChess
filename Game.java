@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Game {
     private Board board;
+    private Board prevBoard = new Board();
     private Player p1;
     private Player p2;
     private Player active;
@@ -79,6 +80,18 @@ public class Game {
         return(move);
     }
 
+
+    public void undoMove(){
+        board = prevBoard;
+        if(active == p1){
+            active = p2;
+        }
+        else{
+            active = p1;
+        }
+        moves.remove(moves.size()-1);
+    }
+
     public boolean isValid(Move move){
         System.out.println("checking valid");
         boolean isValid = false;
@@ -115,6 +128,9 @@ public class Game {
     }
 
     public void runMove(Move move){
+
+        prevBoard = new Board(board);
+
         board.updateBoard(move);
         if(active == p1){
             active = p2;

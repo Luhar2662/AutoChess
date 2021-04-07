@@ -22,6 +22,7 @@ public class gameExec {
         //start game
         boolean running = true;
         game.printBoard();
+        boolean skip = false;
         while(running == true){
             //check checkmate
             
@@ -37,6 +38,11 @@ public class gameExec {
                 String sq2 = input.nextLine();
                 if(sq1.equals("abort") || sq2.equals("abort")){
                     running = false;
+                    break;
+                }
+                if(sq1.equals("undo") || sq2.equals("undo")){
+                    game.undoMove();
+                    skip = true;
                     break;
                 }
                 
@@ -61,7 +67,7 @@ public class gameExec {
 
                 if(activeMove != null){
                 valid = game.isValid(activeMove);
-            }
+                }
                 //if not valid, re prompt
                 if(!valid){
                     System.out.println("invalid move try again");
@@ -74,7 +80,7 @@ public class gameExec {
             if(running == false){
                 break;
             }
-
+            if(skip == false){
             //once valid, execute move, switch active player, restart loop
             game.runMove(activeMove);
             game.printBoard();
@@ -93,7 +99,10 @@ public class gameExec {
                 running = false;
             }
             }
-
+        }
+        if(skip){
+            skip = false;
+        }
         }
 
         System.out.println("game finished. Print movelist?");
