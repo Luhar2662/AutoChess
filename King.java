@@ -45,7 +45,7 @@ public class King extends Piece{
         int y = Math.abs(start.getPos()[1] - end.getPos()[1]);
 
         //check castling queenside
-        if(canCastle && end.getPos()[0] == 2 && start.getPos()[0] == 4 && board.inThreat(start,this.isWhite())==false){
+        if(canCastle && end.getPos()[0] == 2 && start.getPos()[0] == 4 && board.inThreat(start,this.isWhite())==false && end.getPos()[1] == start.getPos()[1]){
             int currentY = start.getPos()[1];
             if(board.getSquare(0,currentY).getPiece() instanceof Rook && board.getSquare(1,currentY).getPiece() == null && board.getSquare(2,currentY).getPiece() == null && board.getSquare(3,currentY).getPiece() == null){
                 if(board.inThreat(board.getSquare(0,currentY), this.isWhite())==false && board.inThreat(board.getSquare(1,currentY), this.isWhite())==false && board.inThreat(board.getSquare(2,currentY),this.isWhite())==false && board.inThreat(board.getSquare(3,currentY),this.isWhite())==false){
@@ -57,7 +57,7 @@ public class King extends Piece{
         }
 
         //check kingside
-        if(canCastle && end.getPos()[0] == 6 && start.getPos()[0] == 4 && board.inThreat(start,this.isWhite())==false){
+        if(canCastle && end.getPos()[0] == 6 && start.getPos()[0] == 4 && board.inThreat(start,this.isWhite())==false && end.getPos()[1] == start.getPos()[1]){
             int currentY = start.getPos()[1];
             if(board.getSquare(7,currentY).getPiece() instanceof Rook && board.getSquare(6,currentY).getPiece() == null && board.getSquare(5,currentY).getPiece() == null ){
                 if(board.inThreat(board.getSquare(7,currentY),this.isWhite())==false && board.inThreat(board.getSquare(6,currentY),this.isWhite())==false && board.inThreat(board.getSquare(5,currentY),this.isWhite())==false){

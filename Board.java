@@ -182,7 +182,9 @@ public class Board{
                     if(current.getPiece().isWhite() != white){
                         if(!(current.getPiece() instanceof Pawn)){
                             if(current.getPiece().canMove(this, current, target)){
+                                System.out.println("piece at" + i + "," + j + "threatens.");
                                 return true;
+                                
                             }
                         }
                         else{
@@ -329,7 +331,7 @@ public class Board{
                 //vertical
                 if(x2 == x1){
                     for(int i = y1+1; i<y2; i ++){
-                        if(this.canBlock(this.getSquare(x1,i), ! white)){
+                        if(this.canBlock(this.getSquare(x1,i), white)){
                             isBoxed = false;
                             System.out.println("canBlock");
                         }
@@ -338,7 +340,7 @@ public class Board{
                 //horizontal
                 else if(y2 == y1){
                     for(int i = x1+1; i<x2; i ++){
-                        if(this.canBlock(this.getSquare(x1,i), ! white)){
+                        if(this.canBlock(this.getSquare(x1,i), white)){
                             isBoxed = false;
                             System.out.println("canBlock");
                         }
@@ -352,7 +354,7 @@ public class Board{
             // Up + Right
             if(x2>x1 && y2>y1){
                 for(int i = 1; i < diff; i++){
-                    if(this.canBlock(this.getSquare(x1+i,y1+i), ! white)){
+                    if(this.canBlock(this.getSquare(x1+i,y1+i), white)){
                             isBoxed = false;
                             System.out.println("canBlock");
                         }
@@ -363,7 +365,7 @@ public class Board{
             // Up + Left
             if(x2<x1 && y2>y1){
                 for(int i = 1; i < diff; i++){
-                    if(this.canBlock(this.getSquare(x1-i,y1+i), ! white)){
+                    if(this.canBlock(this.getSquare(x1-i,y1+i), white)){
                         isBoxed = false;
                         System.out.println("canBlock");
                     }
@@ -374,7 +376,7 @@ public class Board{
             // Down + Left
             if(x2<x1 && y2<y1){
                 for(int i = 1; i < diff; i++){
-                    if(this.canBlock(this.getSquare(x1-i,y1-i), ! white)){
+                    if(this.canBlock(this.getSquare(x1-i,y1-i), white)){
                         isBoxed = false;
                         System.out.println("canBlock");
                     }
@@ -385,7 +387,7 @@ public class Board{
             // Down + Right
             if(x2>x1 && y2<y1){
                 for(int i = 1; i < diff; i++){
-                    if(this.canBlock(this.getSquare(x1+i,y1-i), ! white)){
+                    if(this.canBlock(this.getSquare(x1+i,y1-i), white)){
                         isBoxed = false;
                         System.out.println("canBlock");
                     }
@@ -464,6 +466,7 @@ public class Board{
                     
                     boolean valInput = false;
                     int choice = 1;
+                    choice = gameExec.input.nextInt();
                     while(!valInput){
                         System.out.println("Promotion: choose new piece. 1:Q, 2:N, 3:B, 4:R");
                         

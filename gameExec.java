@@ -2,13 +2,14 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class gameExec {
+    public static Scanner input = new Scanner(System.in);
     public static void main(String[] args){
         //initialize game
-        Scanner input = new Scanner(System.in);
+        
         System.out.println("Enter White Player's name:");
         String whiteName = input.nextLine();
         Player p1 = new Player(true, whiteName);
-        ArrayList<String> moveStList = new ArrayList();
+        ArrayList<String> moveStList = new ArrayList<String>();
 
         System.out.println("Enter Black Player's name:");
         String blackName = input.nextLine();
@@ -34,6 +35,11 @@ public class gameExec {
                 System.out.println("input move: start square, end square");
                 String sq1 = input.nextLine();
                 String sq2 = input.nextLine();
+                if(sq1.equals("abort") || sq2.equals("abort")){
+                    running = false;
+                    break;
+                }
+                
                 if(sq1.length() != 2 || sq2.length() != 2 ){
                     System.out.println("invalid input");
                 }
@@ -64,6 +70,9 @@ public class gameExec {
                     moveStList.add(sq1);
                     moveStList.add(sq2);
                 }
+            }
+            if(running == false){
+                break;
             }
 
             //once valid, execute move, switch active player, restart loop
