@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class gameExec {
     public static void main(String[] args){
@@ -7,6 +8,7 @@ public class gameExec {
         System.out.println("Enter White Player's name:");
         String whiteName = input.nextLine();
         Player p1 = new Player(true, whiteName);
+        ArrayList<String> moveStList = new ArrayList();
 
         System.out.println("Enter Black Player's name:");
         String blackName = input.nextLine();
@@ -58,6 +60,10 @@ public class gameExec {
                 if(!valid){
                     System.out.println("invalid move try again");
                 }
+                else{
+                    moveStList.add(sq1);
+                    moveStList.add(sq2);
+                }
             }
 
             //once valid, execute move, switch active player, restart loop
@@ -89,6 +95,18 @@ public class gameExec {
         else{
             game.printMoveList();
         }
+
+        System.out.println("Print game string list?");
+         inputln = input.nextLine();
+        if(inputln.equals("")){
+            
+        }
+        else{
+            for(String s : moveStList){
+                System.out.println(s);
+            }
+        }
+
 
 
         
