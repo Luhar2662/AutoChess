@@ -79,6 +79,12 @@ public class Move {
                 moveString = "O-O-O";
             }
         }
+
+        String colT = "W";
+        if(player.playingWhite() == false){
+            colT = "B";
+        }
+        moveString = (moveString + " || " + colT);
         String output = ("" + moveNum + ": " + moveString);
         return output;
     }

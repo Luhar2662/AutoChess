@@ -75,11 +75,21 @@ public class gameExec {
                     System.out.println("White Wins!");
                 }
 
-                //running = false;
+                running = false;
             }
             }
 
         }
+
+        System.out.println("game finished. Print movelist?");
+        String inputln = input.nextLine();
+        if(inputln.equals("")){
+            
+        }
+        else{
+            game.printMoveList();
+        }
+
 
         
 

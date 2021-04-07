@@ -156,4 +156,10 @@ public class Game {
         System.out.println("  _________________");
     }
 
+    public void printMoveList(){
+        for(Move m : moves){
+            System.out.println(m);
+        }
+    }
+
 }

@@ -197,6 +197,31 @@ public class Board{
         return false;
     }
 
+    public boolean inThreatNoK(Square target, boolean white){
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++){
+                Square current = this.getSquare(i,j);
+                if(current.getPiece() != null){
+                    if(current.getPiece().isWhite() != white){
+                        if(!(current.getPiece() instanceof Pawn)){
+                            if(!(current.getPiece() instanceof King)){
+                            if(current.getPiece().canMove(this, current, target)){
+                                return true;
+                            }
+                        }
+                    }
+                        else{
+                            if(((Pawn)(current.getPiece())).canTake(this, current, target)){
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     public boolean canBlock(Square target, boolean white){
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 8; j++){
@@ -282,7 +307,7 @@ public class Board{
         System.out.println("agg squares:" + aggSquares.size());
         if(aggSquares.size()==1){
         for(Square s : aggSquares){
-            if(this.inThreat(s, !(white))){
+            if(this.inThreatNoK(s, !(white))){
                 isBoxed = false;
                 System.out.println("can take");
             }
