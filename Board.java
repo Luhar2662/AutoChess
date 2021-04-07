@@ -202,7 +202,7 @@ public class Board{
             for(int j = 0; j < 8; j++){
                 Square current = this.getSquare(i,j);
                 if(current.getPiece() != null){
-                    if(current.getPiece().isWhite() != white && !(current.getPiece() instanceof King)){
+                    if(current.getPiece().isWhite() == white && !(current.getPiece() instanceof King)){
                         if(!(current.getPiece() instanceof Pawn)){
                             if(current.getPiece().canMove(this, current, target)){
                                 return true;
@@ -233,8 +233,10 @@ public class Board{
         if(this.inThreat(kingpos,white)){
             for(int i = -1; i<2; i++){
                 for(int j = -1; j<2; j++){
-                    if(i>= 0 && i < 8 && j>=0 && j<8){
-                    if(kingpos.getPiece().canMove(this, kingpos, this.getSquare(x1+i,y1+j))){
+                    if((i+x1)>= 0 && (x1+i) < 8 && (y1+j)>=0 && (y1+j)<8){
+                        System.out.println("checking" + (x1+i) + "," + (y1+j));
+                    if(kingpos.getPiece().canMove(this, kingpos, this.getSquare(x1+i,y1+j)) && this.getSquare(x1+i,y1+j).getPiece() == null){
+                        System.out.println("King can move" + (x1+i)+ " " + (y1+j));
                         kingCanMove = true;
                     }
                 }
@@ -253,13 +255,14 @@ public class Board{
         //can aggressor be taken?
         //get all aggressor squares. 
         ArrayList<Square> aggSquares = new ArrayList<Square>();
+       
     
         for(int i = 0; i<8; i++){
             for(int j = 0; j<8; j++){
                 Square current = this.getSquare(i,j);
                 if(current.getPiece() != null){
                 if(current.getPiece().canMove(this, current, kingpos)){
-                    if(current.getPiece().isWhite() == white){
+                    if(current.getPiece().isWhite() != white){
                         aggSquares.add(current);
                     }
                 }
@@ -267,12 +270,15 @@ public class Board{
         }
         }
 
+        System.out.println("agg squares:" + aggSquares.size());
+        if(aggSquares.size()==1){
         for(Square s : aggSquares){
             if(this.inThreat(s, !(white))){
                 isBoxed = false;
+                System.out.println("can take");
             }
         }
-
+    }
         //define move coordinates.
         
 
@@ -291,6 +297,7 @@ public class Board{
                     for(int i = y1+1; i<y2; i ++){
                         if(this.canBlock(this.getSquare(x1,i), ! white)){
                             isBoxed = false;
+                            System.out.println("canBlock");
                         }
                     }
                 }
@@ -299,6 +306,7 @@ public class Board{
                     for(int i = x1+1; i<x2; i ++){
                         if(this.canBlock(this.getSquare(x1,i), ! white)){
                             isBoxed = false;
+                            System.out.println("canBlock");
                         }
                     }
 
@@ -312,6 +320,7 @@ public class Board{
                 for(int i = 1; i < diff; i++){
                     if(this.canBlock(this.getSquare(x1+i,y1+i), ! white)){
                             isBoxed = false;
+                            System.out.println("canBlock");
                         }
                 }
                 
@@ -322,6 +331,7 @@ public class Board{
                 for(int i = 1; i < diff; i++){
                     if(this.canBlock(this.getSquare(x1-i,y1+i), ! white)){
                         isBoxed = false;
+                        System.out.println("canBlock");
                     }
                 }
                 
@@ -332,6 +342,7 @@ public class Board{
                 for(int i = 1; i < diff; i++){
                     if(this.canBlock(this.getSquare(x1-i,y1-i), ! white)){
                         isBoxed = false;
+                        System.out.println("canBlock");
                     }
                 }
                 
@@ -342,6 +353,7 @@ public class Board{
                 for(int i = 1; i < diff; i++){
                     if(this.canBlock(this.getSquare(x1+i,y1-i), ! white)){
                         isBoxed = false;
+                        System.out.println("canBlock");
                     }
                 }
                 
