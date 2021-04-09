@@ -8,3 +8,5 @@ Coding notes:
 
 TODO:
 -checkmate!!!
+
+Checkmate logic can take - create new board and check...

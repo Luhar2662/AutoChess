@@ -49,6 +49,7 @@ public class gameExec {
                 if(sq1.length() != 2 || sq2.length() != 2 ){
                     System.out.println("invalid input");
                 }
+                else{
 
                 //ASCII conversion
                 char[] ch1 = sq1.toCharArray();
@@ -64,10 +65,11 @@ public class gameExec {
 
                 activeMove = game.createMove(x1, x2, y1, y2, active, sq2);
                 //check move
-
+                
                 if(activeMove != null){
                 valid = game.isValid(activeMove);
                 }
+            }
                 //if not valid, re prompt
                 if(!valid){
                     System.out.println("invalid move try again");

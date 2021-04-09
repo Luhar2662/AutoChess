@@ -250,6 +250,8 @@ public class Board{
 
     
 
+    
+
     public boolean checkmated(boolean white){
         boolean isBoxed = true;
         Square kingpos = this.getKingPos(white);
