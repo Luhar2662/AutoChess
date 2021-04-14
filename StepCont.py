@@ -15,7 +15,7 @@ StepPins = [17,22,23,24]
  
 # Set all pins as output
 for pin in StepPins:
-  print "Setup pins"
+  print("Setup pins")
   GPIO.setup(pin,GPIO.OUT)
   GPIO.output(pin, False)
  
@@ -35,24 +35,24 @@ StepDir = 1 # Set to 1 or 2 for clockwise
             # Set to -1 or -2 for anti-clockwise
  
 # Read wait time from command line
-if len(sys.argv)&gt;1:
+if len(sys.argv) > 1:
   WaitTime = int(sys.argv[1])/float(1000)
 else:
   WaitTime = 10/float(1000)
  
 # Initialise variables
 StepCounter = 0
- 
+cycles = 0
 # Start main loop
-while True:
+while cycles<50:
  
-  print StepCounter,
-  print Seq[StepCounter]
+  print(StepCounter)
+  print(Seq[StepCounter])
  
   for pin in range(0, 4):
     xpin = StepPins[pin]#
     if Seq[StepCounter][pin]!=0:
-      print " Enable GPIO %i" %(xpin)
+      print" Enable GPIO %i" %(xpin)
       GPIO.output(xpin, True)
     else:
       GPIO.output(xpin, False)
@@ -61,10 +61,12 @@ while True:
  
   # If we reach the end of the sequence
   # start again
-  if (StepCounter&gt;=StepCount):
+  if (StepCounter >= StepCount):
     StepCounter = 0
-  if (StepCounter&lt;0):
+    cycles+=1
+  if (StepCounter < 0):
     StepCounter = StepCount+StepDir
+    cycles+=1
  
   # Wait before moving on
   time.sleep(WaitTime)
