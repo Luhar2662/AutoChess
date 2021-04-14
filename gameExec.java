@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class gameExec {
     public static Scanner input = new Scanner(System.in);
+    public static Controller controller = new Controller();
     public static void main(String[] args){
         //initialize game
         
@@ -86,6 +87,7 @@ public class gameExec {
             //once valid, execute move, switch active player, restart loop
             game.runMove(activeMove);
             game.printBoard();
+            controller.switchTurn(game.active().playingWhite());
             if(game.getBoard().inThreat(game.getBoard().getKingPos(game.active().playingWhite()), game.active().playingWhite())){
                 System.out.println("Check!");
                 boolean currentColor = game.active().playingWhite();
