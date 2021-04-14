@@ -8,6 +8,7 @@ import com.pi4j.io.gpio.PinState;
 import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 
+
 public class Controller {
     private static final GpioController gpio = GpioFactory.getInstance();
     final GpioPinDigitalOutput black = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, PinState.LOW);
