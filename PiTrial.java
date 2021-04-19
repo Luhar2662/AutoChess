@@ -56,21 +56,12 @@ public class PiTrial {
     public static void main(String[] args) throws InterruptedException {
 
         System.out.println("<--Pi4J--> GPIO Blink Example ... started.");
-       
-       try{
-        ProcessBuilder pb = new ProcessBuilder("sudo","python", "/home/pi/Documents/AutoChess/AutoChess/StepCont.py");
-        pb.redirectErrorStream(true);
-        Process p = pb.start();
-
-        BufferedReader bfr = new BufferedReader(new InputStreamReader(p.getInputStream()));
-        String line ="";
-        System.out.println("running py script" + line);
-        line = bfr.readLine();
-        System.out.println(line);
-        while(((line = bfr.readLine()) != null)){
-            System.out.println(line);
-        }
-    }catch(Exception e){System.out.println(e);}
+        StepperMotorX motorX = new StepperMotorX();
+        StepperMotorY motorY = new StepperMotorY();
+        motorX.backward(75);
+        motorY.backward(75);
+        motorX.forward(100);
+        motorY.forward(100);
 
 
        /* File dir = new File("/Documents/AutoChess/AutoChess/");

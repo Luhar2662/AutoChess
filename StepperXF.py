@@ -29,22 +29,26 @@ Seq = [[1,0,0,1],
        [0,0,1,0],
        [0,0,1,1],
        [0,0,0,1]]
- 
+       
 StepCount = len(Seq)
-StepDir = 1 # Set to 1 or 2 for clockwise
+if(len(sys.argv) > 2):
+  StepDir = int(sys.argv[2])
+else:
+  StepDir = 1 # Set to 1 or 2 for clockwise
             # Set to -1 or -2 for anti-clockwise
  
-# Read wait time from command line
-if len(sys.argv) > 1:
-  WaitTime = int(sys.argv[1])/float(1000)
-else:
-  WaitTime = 10/float(1000)
+
+WaitTime = 10/float(1000)
  
 # Initialise variables
 StepCounter = 0
 cycles = 0
+if len(sys.argv) > 1:
+  limit = int(sys.argv[1])
+else:
+  limit = 50
 # Start main loop
-while cycles<50:
+while cycles<limit:
  
   print(StepCounter)
   print(Seq[StepCounter])
@@ -70,3 +74,9 @@ while cycles<50:
  
   # Wait before moving on
   time.sleep(WaitTime)
+  print(cycles)
+
+
+for pin in range(0,4):
+  xpin = StepPins[pin]#
+  GPIO.output(xpin,False)
