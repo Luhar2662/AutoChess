@@ -52,16 +52,33 @@ import com.pi4j.io.gpio.event.GpioPinListenerDigital;
  * @author Robert Savage
  */
 public class PiTrial {
-
+ 
     public static void main(String[] args) throws InterruptedException {
 
         System.out.println("<--Pi4J--> GPIO Blink Example ... started.");
         StepperMotorX motorX = new StepperMotorX();
         StepperMotorY motorY = new StepperMotorY();
-        motorX.backward(75);
-        motorY.backward(75);
-        motorX.forward(100);
-        motorY.forward(100);
+        //motorX.backward(75);
+        //motorY.backward(75);
+        //motorX.forward(100);
+        //motorY.forward(100);
+
+        StepperMotorXThread motorXT = new StepperMotorXThread();
+        StepperMotorYThread motorYT = new StepperMotorYThread();
+
+        double waitx = motorXT.forward(50);
+        double waity = motorYT.forward(50);
+
+        System.out.println(waitx);
+
+        if(waitx>waity){
+            Thread.sleep((long)waitx);
+        }
+        else{Thread.sleep((long)waity);}
+
+        Thread.sleep(2000);
+
+        System.out.println("should be done?-------------------------------------------------------------------------------");
 
 
        /* File dir = new File("/Documents/AutoChess/AutoChess/");

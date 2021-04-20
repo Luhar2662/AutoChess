@@ -51,9 +51,9 @@ else:
 # Start main loop
 while cycles<limit:
  
-  print(StepCounter)
-  print(Seq[StepCounter])
-  print(cycles)
+  #print(StepCounter)
+  #print(Seq[StepCounter])
+  #print(cycles)
  
   for pin in range(0, 4):
     xpin = StepPins[pin]#

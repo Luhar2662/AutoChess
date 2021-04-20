@@ -50,8 +50,8 @@ else:
 # Start main loop
 while cycles<limit:
  
-  print(StepCounter)
-  print(Seq[StepCounter])
+  #print(StepCounter)
+  #print(Seq[StepCounter])
  
   for pin in range(0, 4):
     xpin = StepPins[pin]#
@@ -74,7 +74,7 @@ while cycles<limit:
  
   # Wait before moving on
   time.sleep(WaitTime)
-  print(cycles)
+  #print(cycles)
 
 
 for pin in range(0,4):
