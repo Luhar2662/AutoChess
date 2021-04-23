@@ -7,18 +7,18 @@ public class StepperMotorXThread {
     public double stepForward50() {
         ThreadHandler t = new ThreadHandler(true);
         t.start();
-        return(.01 * 50*1000 * 8);
+        return(.01 * 50*100 * 8);
         
     }
 
     public double forward(int steps) {
         ThreadHandler t = new ThreadHandler(true,steps);
         t.start();
-        return(.01 * steps * 1000 * 8);
+        return(.01 * steps * 100 * 8);
     }
     public double backward(int steps) {
         ThreadHandler t = new ThreadHandler(true,steps,true);
         t.start();
-        return(.01 * steps * 1000 * 8);
+        return(.01 * steps * 100 * 8);
     }
 }

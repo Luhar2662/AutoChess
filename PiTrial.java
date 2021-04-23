@@ -66,9 +66,10 @@ public class PiTrial {
         StepperMotorXThread motorXT = new StepperMotorXThread();
         StepperMotorYThread motorYT = new StepperMotorYThread();
 
-        double waitx = motorXT.forward(50);
-        double waity = motorYT.forward(50);
-
+        while(true){
+        double waitx = motorXT.forward(800);
+        double waity = motorYT.forward(800);
+       
         System.out.println(waitx);
 
         if(waitx>waity){
@@ -80,6 +81,10 @@ public class PiTrial {
 
         System.out.println("should be done?-------------------------------------------------------------------------------");
 
+        
+        }
+    }
+}
 
        /* File dir = new File("/Documents/AutoChess/AutoChess/");
         try{
@@ -97,7 +102,7 @@ public class PiTrial {
         */
        
         // create gpio controller
-        final GpioController gpio = GpioFactory.getInstance();
+        /*final GpioController gpio = GpioFactory.getInstance();
 
         // provision gpio pin #01 & #03 as an output pins and blink
         final GpioPinDigitalOutput led1 = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01);
@@ -130,14 +135,12 @@ public class PiTrial {
         System.out.println(" ... PRESS <CTRL-C> TO STOP THE PROGRAM.");
 
         // keep program running until user aborts (CTRL-C)
-        while(true) {
-            Thread.sleep(500);
-        }
-
+        
         // stop all GPIO activity/threads
         // (this method will forcefully shutdown all GPIO monitoring threads and scheduled tasks)
         // gpio.shutdown();   <--- implement this method call if you wish to terminate the Pi4J GPIO controller
     }
 }
+*/
 
 //END SNIPPET: blink-gpio-snippet

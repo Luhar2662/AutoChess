@@ -38,7 +38,7 @@ else:
             # Set to -1 or -2 for anti-clockwise
  
 
-WaitTime = 10/float(1000)
+WaitTime = 10/float(13000)
  
 # Initialise variables
 StepCounter = 0
@@ -49,6 +49,7 @@ else:
   limit = 50
 # Start main loop
 while cycles<limit:
+  
  
   #print(StepCounter)
   #print(Seq[StepCounter])
@@ -68,13 +69,15 @@ while cycles<limit:
   if (StepCounter >= StepCount):
     StepCounter = 0
     cycles+=1
+    print(cycles, "X")
   if (StepCounter < 0):
     StepCounter = StepCount+StepDir
     cycles+=1
+    print(cycles, "X")
  
   # Wait before moving on
   time.sleep(WaitTime)
-  #print(cycles)
+
 
 
 for pin in range(0,4):
