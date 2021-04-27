@@ -16,7 +16,7 @@ public class StepperMotorX {
             line = bfr.readLine();
             System.out.println(line);
             while(((line = bfr.readLine()) != null)){
-                System.out.println(line);
+               // System.out.println(line);
             }
         }catch(Exception e){System.out.println(e);}
     }
@@ -34,7 +34,7 @@ public class StepperMotorX {
             line = bfr.readLine();
             System.out.println(line);
             while(((line = bfr.readLine()) != null)){
-                System.out.println(line);
+              // System.out.println(line);
             }
         }catch(Exception e){System.out.println(e);}
     }
@@ -52,7 +52,7 @@ public class StepperMotorX {
             line = bfr.readLine();
             System.out.println(line);
             while(((line = bfr.readLine()) != null)){
-                System.out.println(line);
+               // System.out.println(line);
             }
         }catch(Exception e){System.out.println(e);}
     }

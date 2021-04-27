@@ -86,6 +86,7 @@ public class gameExec {
             if(skip == false){
             //once valid, execute move, switch active player, restart loop
             game.runMove(activeMove);
+            controller.movePieces(activeMove);
             game.printBoard();
             controller.switchTurn(game.active().playingWhite());
             if(game.getBoard().inThreat(game.getBoard().getKingPos(game.active().playingWhite()), game.active().playingWhite())){

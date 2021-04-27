@@ -70,10 +70,25 @@ while cycles<limit:
   if (StepCounter >= StepCount):
     StepCounter = 0
     cycles+=1
+    if(cycles%10 == 0):
+      f = open("/home/pi/Documents/AutoChess/AutoChess/yMotorPos.txt", "r")
+      currentPos =  int(f.read())
+      f.close()
+      f = open("/home/pi/Documents/AutoChess/AutoChess/yMotorPos.txt", "w")
+      f.write(str(currentPos + 10))
+      f.close()
+    
     print(cycles, "Y")
   if (StepCounter < 0):
     StepCounter = StepCount+StepDir
     cycles+=1
+    if(cycles%10 == 0):
+      f = open("/home/pi/Documents/AutoChess/AutoChess/yMotorPos.txt", "r")
+      currentPos =  int(f.read())
+      f.close()
+      f = open("/home/pi/Documents/AutoChess/AutoChess/yMotorPos.txt", "w")
+      f.write(str(currentPos - 10))
+      f.close()
     print(cycles, "Y")
  
   # Wait before moving on

@@ -77,7 +77,21 @@ public class PiTrial {
         }
         else{Thread.sleep((long)waity);}
 
-        Thread.sleep(2000);
+        Thread.sleep(5000);
+
+        System.out.println("should be done?-------------------------------------------------------------------------------");
+
+        waitx = motorXT.backward(800);
+        waity = motorYT.backward(800);
+       
+        System.out.println(waitx);
+
+        if(waitx>waity){
+            Thread.sleep((long)waitx);
+        }
+        else{Thread.sleep((long)waity);}
+
+        Thread.sleep(5000);
 
         System.out.println("should be done?-------------------------------------------------------------------------------");
 
