@@ -21,14 +21,10 @@ for pin in StepPins:
  
 # Define advanced sequence
 # as shown in manufacturers datasheet
-Seq = [[1,0,0,1],
-       [1,0,0,0],
-       [1,1,0,0],
-       [0,1,0,0],
+Seq = [[1,0,1,0],
        [0,1,1,0],
-       [0,0,1,0],
-       [0,0,1,1],
-       [0,0,0,1]]
+       [0,1,0,1],
+       [1,0,0,1]]
        
  
 StepCount = len(Seq)
@@ -39,7 +35,7 @@ else:
             # Set to -1 or -2 for anti-clockwise
  
 # Read wait time from command line
-WaitTime = 10/float(13000)
+WaitTime = 10/float(1000)
  
 # Initialise variables
 StepCounter = 0
