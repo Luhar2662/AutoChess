@@ -12,8 +12,8 @@ GPIO.setmode(GPIO.BCM)
 # Physical pins 11,15,16,18
 # GPIO17,GPIO22,GPIO23,GPIO24
 
-Dir = 17
-Stp = 22
+Dir = 5
+Stp = 6
  
 # Set all pins as output
 print("Setup pins")
