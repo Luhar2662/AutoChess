@@ -49,3 +49,20 @@ while cycles<limit:
     GPIO.output(Stp,False)
     time.sleep(WaitTime/2)
     cycles += 1
+
+    if(cycles%10 == 0 and StepDir > 0):
+     f = open("/home/pi/Documents/AutoChess/AutoChess/yMotorPos.txt", "r")
+     currentPos =  int(f.read())
+     f.close()
+     f = open("/home/pi/Documents/AutoChess/AutoChess/yMotorPos.txt", "w")
+     f.write(str(currentPos + 10))
+     f.close()
+     print(cycles, "Y")
+    if(cycles%10 == 0 and StepDir<0):
+     f = open("/home/pi/Documents/AutoChess/AutoChess/yMotorPos.txt", "r")
+     currentPos =  int(f.read())
+     f.close()
+     f = open("/home/pi/Documents/AutoChess/AutoChess/yMotorPos.txt", "w")
+     f.write(str(currentPos - 10))
+     f.close()
+     print(cycles, "Y")
