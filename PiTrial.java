@@ -67,8 +67,8 @@ public class PiTrial {
         StepperMotorYThread motorYT = new StepperMotorYThread();
 
         while(true){
-        double waitx = motorXT.forward(50);
-        double waity = motorYT.forward(50);
+        double waitx = motorXT.forward(400);
+        double waity = motorYT.forward(400);
        
         System.out.println(waitx);
 
@@ -77,12 +77,12 @@ public class PiTrial {
         }
         else{Thread.sleep((long)waity);}
 
-        Thread.sleep(5000);
+        Thread.sleep(1000);
 
         System.out.println("should be done?-------------------------------------------------------------------------------");
 
-        waitx = motorXT.backward(50);
-        waity = motorYT.backward(50);
+        waitx = motorXT.backward(400);
+        waity = motorYT.backward(400);
        
         System.out.println(waitx);
 
@@ -91,7 +91,7 @@ public class PiTrial {
         }
         else{Thread.sleep((long)waity);}
 
-        Thread.sleep(5000);
+        Thread.sleep(1000);
 
         System.out.println("should be done?-------------------------------------------------------------------------------");
 

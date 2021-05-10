@@ -7,43 +7,34 @@ import RPi.GPIO as GPIO
 # Use BCM GPIO references
 # instead of physical pin numbers
 GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
  
 # Define GPIO signals to use
 # Physical pins 11,15,16,18
 # GPIO17,GPIO22,GPIO23,GPIO24
-StepPins = [17,22,23,24]
+
+Dir = 17
+Stp = 22
  
 # Set all pins as output
-for pin in StepPins:
-  print("Setup pins")
-  GPIO.setup(pin,GPIO.OUT)
-  GPIO.output(pin, False)
- 
-# Define advanced sequence
-# as shown in manufacturers datasheet
-#Seq = [[1,0,0,1],
-#       [1,0,0,0],
-#       [1,1,0,0],
-#       [0,1,0,0],
-#       [0,1,1,0],
-#       [0,0,1,0],
-#       [0,0,1,1],
-#       [0,0,0,1]]
+print("Setup pins")
+GPIO.setup(Dir,GPIO.OUT)
+GPIO.output(Dir, False)
+GPIO.setup(Stp,GPIO.OUT)
+GPIO.output(Stp,False)
 
-Seq = [[1,0,1,0],
-       [0,1,1,0],
-       [0,1,0,1],
-       [1,0,0,1]]
-       
-StepCount = len(Seq)
 if(len(sys.argv) > 2):
   StepDir = int(sys.argv[2])
 else:
   StepDir = 1 # Set to 1 or 2 for clockwise
             # Set to -1 or -2 for anti-clockwise
  
+if(StepDir>0):
+    GPIO.output(Dir,True)
+else:
+    GPIO.output(Dir,False)
 
-WaitTime = 10/float(1000)
+WaitTime = 10/float(2000)
  
 # Initialise variables
 StepCounter = 0
@@ -54,51 +45,26 @@ else:
   limit = 50
 # Start main loop
 while cycles<limit:
+    GPIO.output(Stp, True)
+    time.sleep(WaitTime/2)
+    GPIO.output(Stp,False)
+    time.sleep(WaitTime/2)
+    cycles += 1
+
+    if(cycles%10 == 0 and StepDir > 0):
+     f = open("/home/pi/Documents/AutoChess/AutoChess/xMotorPos.txt", "r")
+     currentPos =  int(f.read())
+     f.close()
+     f = open("/home/pi/Documents/AutoChess/AutoChess/xMotorPos.txt", "w")
+     f.write(str(currentPos + 10))
+     f.close()
+     print(cycles, "X")
   
- 
-  #print(StepCounter)
-  #print(Seq[StepCounter])
- 
-  for pin in range(0, 4):
-    xpin = StepPins[pin]#
-    if Seq[StepCounter][pin]!=0:
-      print" Enable GPIO %i" %(xpin)
-      GPIO.output(xpin, True)
-    else:
-      GPIO.output(xpin, False)
- 
-  StepCounter += StepDir
- 
-  # If we reach the end of the sequence
-  # start again
-  if (StepCounter >= StepCount):
-    StepCounter = 0
-    cycles+=1
-    if(cycles%10 == 0):
-      f = open("/home/pi/Documents/AutoChess/AutoChess/xMotorPos.txt", "r")
-      currentPos =  int(f.read())
-      f.close()
-      f = open("/home/pi/Documents/AutoChess/AutoChess/xMotorPos.txt", "w")
-      f.write(str(currentPos + 10))
-      f.close()
-    print(cycles, "X")
-  if (StepCounter < 0):
-    StepCounter = StepCount+StepDir
-    cycles+=1
-    if(cycles%10 == 0):
-      f = open("/home/pi/Documents/AutoChess/AutoChess/xMotorPos.txt", "r")
-      currentPos =  int(f.read())
-      f.close()
-      f = open("/home/pi/Documents/AutoChess/AutoChess/xMotorPos.txt", "w")
-      f.write(str(currentPos - 10))
-      f.close()
-    print(cycles, "X")
- 
-  # Wait before moving on
-  time.sleep(WaitTime)
-
-
-
-for pin in range(0,4):
-  xpin = StepPins[pin]#
-  GPIO.output(xpin,False)
+    if(cycles%10 == 0 and StepDir<0):
+     f = open("/home/pi/Documents/AutoChess/AutoChess/xMotorPos.txt", "r")
+     currentPos =  int(f.read())
+     f.close()
+     f = open("/home/pi/Documents/AutoChess/AutoChess/xMotorPos.txt", "w")
+     f.write(str(currentPos - 10))
+     f.close()
+     print(cycles, "X")
