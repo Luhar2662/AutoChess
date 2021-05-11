@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Board{
     Square[][] squares;
+    Square[][] taken = new Square[2][16];
     
 
     public Board(){
@@ -73,6 +74,77 @@ public class Board{
 
             }
         }
+
+        taken = new Square[2][16];
+        for(int i = 0; i<2;i++){
+            for(int j = 0; j<16; j++){
+                
+                Piece piece = cBoard.getTakenSq(i,j).getPiece();
+
+                boolean white = false;
+                //check null
+                if(piece != null){
+                    white = piece.isWhite();
+                }
+                else{
+                    taken[i][j] = new Square(i,j,null);
+                    
+                }
+
+                //check instances for piece typing
+                if(piece instanceof King){
+                    boolean castle = ((King)piece).canCastle();
+                    King copyKing = new King(white);
+                    copyKing.setCastling(castle);
+                    taken[i][j] = new Square(i, j, copyKing);
+
+                }
+
+                if(piece instanceof Bishop){
+                    Bishop copyBish = new Bishop(white);
+                    taken[i][j] = new Square(i, j, copyBish);
+
+                }
+
+                if(piece instanceof Knight){
+                    Knight copyKn = new Knight(white);
+                    taken[i][j] = new Square(i, j, copyKn);
+
+                }
+
+                if(piece instanceof Rook){
+                    Rook copyRook = new Rook(white);
+                    taken[i][j] = new Square(i, j, copyRook);
+
+                }
+
+                if(piece instanceof Queen){
+                    Queen copyQueen = new Queen(white);
+                    taken[i][j] = new Square(i, j, copyQueen);
+
+                }
+
+                if(piece instanceof Pawn){
+                    boolean hasMoved = ((Pawn)piece).hasMoved();
+                    boolean eP = ((Pawn)piece).ePvalid();
+                    Pawn copyPawn = new Pawn(white);
+                    copyPawn.setMoved(hasMoved);
+                    copyPawn.setEP(eP);
+                    taken[i][j] = new Square(i, j, copyPawn);
+
+                }
+
+            }
+        }
+
+    }
+
+    public Square[][] getTaken(){
+        return taken;
+    }
+
+    public Square getTakenSq(int x, int y){
+        return taken[x][y];
     }
 
     public Square getSquare(int x, int y){
@@ -449,7 +521,104 @@ public class Board{
 
         if(move.taken() != null){
 
+            
             squares[x2][y2].getPiece().setTaken(true);
+
+            Piece pieceTaken = squares[x2][y2].getPiece();
+            boolean isWhite = pieceTaken.isWhite();
+
+            //place piece in place. White is in y 9-16, black in 1-8. pawns go in x 1, fill in. other pieces are assigned places.
+            if(pieceTaken instanceof Pawn){
+                if(!(isWhite)){
+                    int i = 0;
+                    while(i<8){
+                        if(taken[i][1].getPiece() == null){
+                            taken[i][1].setPiece(pieceTaken);
+                            break;
+                        }
+                    }
+                }
+
+                else{
+                    int i = 8;
+                    while(i<16){
+                        if(taken[i][1].getPiece() == null){
+                            taken[i][1].setPiece(pieceTaken);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if(pieceTaken instanceof Knight){
+                if(!(isWhite)){
+                    if(taken[0][1] == null){
+                        taken[0][1].setPiece(pieceTaken);
+                    }
+                    else{
+                        taken[0][2].setPiece(pieceTaken);
+                    }
+                }
+                else{
+                    if(taken[0][13] == null){
+                        taken[0][13].setPiece(pieceTaken);
+                    }
+                    else{
+                        taken[0][14].setPiece(pieceTaken);
+                    }
+                }
+            }
+
+            if(pieceTaken instanceof Bishop){
+                if(!(isWhite)){
+                    if(taken[0][3] == null){
+                        taken[0][3].setPiece(pieceTaken);
+                    }
+                    else{
+                        taken[0][4].setPiece(pieceTaken);
+                    }
+                }
+                else{
+                    if(taken[0][11] == null){
+                        taken[0][11].setPiece(pieceTaken);
+                    }
+                    else{
+                        taken[0][12].setPiece(pieceTaken);
+                    }
+                }
+            }
+
+            if(pieceTaken instanceof Rook){
+                if(!(isWhite)){
+                    if(taken[0][5] == null){
+                        taken[0][5].setPiece(pieceTaken);
+                    }
+                    else{
+                        taken[0][6].setPiece(pieceTaken);
+                    }
+                }
+                else{
+                    if(taken[0][9] == null){
+                        taken[0][9].setPiece(pieceTaken);
+                    }
+                    else{
+                        taken[0][10].setPiece(pieceTaken);
+                    }
+                }
+            }
+
+            if(pieceTaken instanceof Queen){
+                if(!(isWhite)){
+                    taken[0][7].setPiece(pieceTaken);
+                }
+                else{
+                    taken[0][8].setPiece(pieceTaken);
+                }
+            }
+            
+
+
+
             squares[x2][y2].setPiece(null);
         }
 
