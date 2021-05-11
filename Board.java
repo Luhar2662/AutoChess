@@ -553,7 +553,7 @@ public class Board{
 
             if(pieceTaken instanceof Knight){
                 if(!(isWhite)){
-                    if(taken[0][1] == null){
+                    if(taken[0][1].getPiece() == null){
                         taken[0][1].setPiece(pieceTaken);
                     }
                     else{
@@ -561,7 +561,7 @@ public class Board{
                     }
                 }
                 else{
-                    if(taken[0][13] == null){
+                    if(taken[0][13].getPiece() == null){
                         taken[0][13].setPiece(pieceTaken);
                     }
                     else{
@@ -572,7 +572,7 @@ public class Board{
 
             if(pieceTaken instanceof Bishop){
                 if(!(isWhite)){
-                    if(taken[0][3] == null){
+                    if(taken[0][3].getPiece() == null){
                         taken[0][3].setPiece(pieceTaken);
                     }
                     else{
@@ -580,7 +580,7 @@ public class Board{
                     }
                 }
                 else{
-                    if(taken[0][11] == null){
+                    if(taken[0][11].getPiece() == null){
                         taken[0][11].setPiece(pieceTaken);
                     }
                     else{
@@ -591,7 +591,7 @@ public class Board{
 
             if(pieceTaken instanceof Rook){
                 if(!(isWhite)){
-                    if(taken[0][5] == null){
+                    if(taken[0][5].getPiece() == null){
                         taken[0][5].setPiece(pieceTaken);
                     }
                     else{
@@ -599,7 +599,7 @@ public class Board{
                     }
                 }
                 else{
-                    if(taken[0][9] == null){
+                    if(taken[0][9].getPiece() == null){
                         taken[0][9].setPiece(pieceTaken);
                     }
                     else{
