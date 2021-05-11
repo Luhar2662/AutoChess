@@ -36,7 +36,7 @@ public class ThreadHandler extends Thread{
             
                     BufferedReader bfr = new BufferedReader(new InputStreamReader(p.getInputStream()));
                     String line ="";
-                    System.out.println("running py script" + line);
+                    //System.out.println("running py script" + line);
                     line = bfr.readLine();
                     System.out.println(line);
                     while(((line = bfr.readLine()) != null)){
@@ -53,7 +53,7 @@ public class ThreadHandler extends Thread{
             
                     BufferedReader bfr = new BufferedReader(new InputStreamReader(p.getInputStream()));
                     String line ="";
-                    System.out.println("running py script" + line);
+                    //System.out.println("running py script" + line);
                     line = bfr.readLine();
                     System.out.println(line);
                     while(((line = bfr.readLine()) != null)){
@@ -74,7 +74,7 @@ public class ThreadHandler extends Thread{
             
                     BufferedReader bfr = new BufferedReader(new InputStreamReader(p.getInputStream()));
                     String line ="";
-                    System.out.println("running py script" + line);
+                    //System.out.println("running py script" + line);
                     line = bfr.readLine();
                     System.out.println(line);
                     while(((line = bfr.readLine()) != null)){
@@ -91,7 +91,7 @@ public class ThreadHandler extends Thread{
             
                     BufferedReader bfr = new BufferedReader(new InputStreamReader(p.getInputStream()));
                     String line ="";
-                    System.out.println("running py script" + line);
+                    //System.out.println("running py script" + line);
                     line = bfr.readLine();
                     System.out.println(line);
                     while(((line = bfr.readLine()) != null)){

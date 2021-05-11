@@ -34,7 +34,7 @@ if(StepDir>0):
 else:
     GPIO.output(Dir,False)
 
-WaitTime = 10/float(2000)
+WaitTime = 10/float(2500)
  
 # Initialise variables
 StepCounter = 0
