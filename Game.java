@@ -170,6 +170,34 @@ public class Game {
             System.out.println("|");
         }
         System.out.println("  _________________");
+
+        //print taken list
+        
+        System.out.println("Taken Pieces:");
+        System.out.println(" Black:         | White:          ");
+        System.out.println("__________________________________");
+        for(int i =0; i<2; i++){
+            System.out.print("|");
+            for(int j =0; j < 16; j++){
+                Square take = board.getTakenSq(i,j);
+                if(take.getPiece() == null){
+                    System.out.print("~ ");
+                }
+                else{
+                    System.out.print(take.getPiece().token());
+                    if(take.getPiece().isWhite()){
+                        System.out.print(" ");
+                    }
+                    else{
+                        System.out.print(".");
+                    }
+                }
+
+            }
+            System.out.println("|");
+        }
+        System.out.println("__________________________________");
+
     }
 
     public void printMoveList(){

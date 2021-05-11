@@ -9,6 +9,7 @@ public class Board{
 
     public Board(){
         squares = new Square[8][8];
+        taken = new Square[2][16];
         this.resetBoard();
     }
 
@@ -532,8 +533,8 @@ public class Board{
                 if(!(isWhite)){
                     int i = 0;
                     while(i<8){
-                        if(taken[i][1].getPiece() == null){
-                            taken[i][1].setPiece(pieceTaken);
+                        if(taken[1][i].getPiece() == null){
+                            taken[1][i].setPiece(pieceTaken);
                             break;
                         }
                     }
@@ -542,8 +543,8 @@ public class Board{
                 else{
                     int i = 8;
                     while(i<16){
-                        if(taken[i][1].getPiece() == null){
-                            taken[i][1].setPiece(pieceTaken);
+                        if(taken[1][i].getPiece() == null){
+                            taken[1][i].setPiece(pieceTaken);
                             break;
                         }
                     }
@@ -773,6 +774,14 @@ public class Board{
         for (int i = 0; i < 8; i++) {
             for (int j = 2; j < 6; j++) {
                 squares[i][j] = new Square(i, j, null);
+            }
+        }
+
+
+        //fill taken
+        for(int i = 0; i<2; i++){
+            for(int j=0; j<16; j++){
+                taken[i][j] = new Square(i,j,null);
             }
         }
     }
