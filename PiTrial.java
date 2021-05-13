@@ -65,7 +65,8 @@ public class PiTrial {
 
         StepperMotorXThread motorXT = new StepperMotorXThread();
         StepperMotorYThread motorYT = new StepperMotorYThread();
-
+        Controller c = new Controller();
+        //c.resetMotors(motorXT, motorYT);
         while(true){
         double waitx = motorXT.forward(400);
         double waity = motorYT.forward(400);
@@ -81,6 +82,8 @@ public class PiTrial {
 
         System.out.println("should be done?-------------------------------------------------------------------------------");
 
+        
+        //c.resetMotors(motorXT, motorYT);
         waitx = motorXT.backward(400);
         waity = motorYT.backward(400);
        

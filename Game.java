@@ -128,7 +128,7 @@ public class Game {
     }
 
     public void runMove(Move move){
-
+        System.out.println("running move");
         prevBoard = new Board(board);
 
         board.updateBoard(move);
@@ -138,6 +138,7 @@ public class Game {
         else{
             active = p1;
         }
+        System.out.println("updated board");
 
 
         moves.add(move);

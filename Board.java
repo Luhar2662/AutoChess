@@ -5,9 +5,11 @@ import java.util.ArrayList;
 public class Board{
     Square[][] squares;
     Square[][] taken = new Square[2][16];
+    boolean original = false;
     
 
     public Board(){
+        original = true;
         squares = new Square[8][8];
         taken = new Square[2][16];
         this.resetBoard();
@@ -520,9 +522,10 @@ public class Board{
         int y1 = start.getPos()[1];
         int y2 = end.getPos()[1];
 
-        if(move.taken() != null){
+        if(move.taken() != null && original == true){
 
             
+            System.out.println("checking taken");
             squares[x2][y2].getPiece().setTaken(true);
 
             Piece pieceTaken = squares[x2][y2].getPiece();
@@ -533,9 +536,15 @@ public class Board{
                 if(!(isWhite)){
                     int i = 0;
                     while(i<8){
+                        System.out.println("checking i:" + i);
                         if(taken[1][i].getPiece() == null){
                             taken[1][i].setPiece(pieceTaken);
+                            System.out.println("placed pawn in space " + i);
                             break;
+                        }
+                        else{
+                            System.out.println("not null");
+                            i++;
                         }
                     }
                 }
@@ -546,6 +555,10 @@ public class Board{
                         if(taken[1][i].getPiece() == null){
                             taken[1][i].setPiece(pieceTaken);
                             break;
+                        }
+                        else{
+                            System.out.println("not null");
+                            i++;
                         }
                     }
                 }
